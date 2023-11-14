@@ -2,8 +2,10 @@
 
 # dependencies
 /node_modules
-/.pnp
+.pnp
 .pnp.js
+/web3/abi.js
+/web3/web3.min.js
 
 # testing
 /coverage
