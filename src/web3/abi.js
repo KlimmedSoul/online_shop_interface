@@ -33,6 +33,11 @@ export const abi = [
 				"internalType": "string",
 				"name": "town",
 				"type": "string"
+			},
+			{
+				"internalType": "bytes32",
+				"name": "password",
+				"type": "bytes32"
 			}
 		],
 		"name": "create_shop",
@@ -128,6 +133,19 @@ export const abi = [
 		"type": "constructor"
 	},
 	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "user_address",
+				"type": "address"
+			}
+		],
+		"name": "up_to_admin",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
 		"inputs": [],
 		"name": "get_requests",
 		"outputs": [
@@ -141,6 +159,11 @@ export const abi = [
 					{
 						"internalType": "uint256",
 						"name": "date",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "role",
 						"type": "uint256"
 					},
 					{

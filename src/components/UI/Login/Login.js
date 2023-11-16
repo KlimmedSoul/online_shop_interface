@@ -4,7 +4,6 @@ import { getUserAddreses, getUserInfo } from "../../../web3/contractController";
 
 
 const Login = () => {
-
     const [userAddress, setUserAddress] = useState('');
     const [userPassword, setUserPassword] = useState('');
     const [userEmail, setUserEmail] = useState('');
@@ -51,47 +50,67 @@ const Login = () => {
                 window.location.href = 'http://localhost:3000/admin';
                 break;
         }
-     }
+    }
+
+    const redirect =  () => {
+        const role = sessionStorage.getItem("role");
+        let link = "";
+        if (role == 1) {
+            link = "buyer";
+        } else if (role == 2) {
+            link = "seller";
+        } else if (role == 3) {
+            link = "admin"
+        }
+
+        window.location.href = `http://localhost:3000/${link}`
+    }
 
     return (
-        <div className={cl.root}>
-            <section className={cl.main_window}>
-                <header className={cl.header}>
-                    <h1 className={cl.login}>Login</h1>
-                </header>
-                <hr className={cl.hr}/>
-                <div className={cl.main}>
-                    <div className={cl.text_field}>
-                        <h1 className={cl.text_field__label} for="email">Емаил</h1>
-                        <input className={cl.text_field__input} type="text" name="email" id="email" placeholder="Email"
-                        onChange={(e) => setUserEmail(e.target.value)}
-                        />
-                    </div>
+        <div>
+            {sessionStorage.getItem('login') === false || sessionStorage.getItem('login') === null ? 
+            <div className={cl.root}>
+                <section className={cl.main_window}>
+                    <header className={cl.header}>
+                        <h1 className={cl.login}>Login</h1>
+                    </header>
+                    <hr className={cl.hr}/>
+                    <div className={cl.main}>
+                        <div className={cl.text_field}>
+                            <h1 className={cl.text_field__label} for="email">Емаил</h1>
+                            <input className={cl.text_field__input} type="text" name="email" id="email" placeholder="Email"
+                            onChange={(e) => setUserEmail(e.target.value)}
+                            />
+                        </div>
 
-                    <div className={cl.text_field}>
-                        <h1 className={cl.text_field__label} for="address">Адрес</h1>
-                        <input className={cl.text_field__input} type="text" name="address" id="address" placeholder="Address"
-                        onChange={(e) => setUserAddress(e.target.value)}
-                        />
-                    </div>
+                        <div className={cl.text_field}>
+                            <h1 className={cl.text_field__label} for="address">Адрес</h1>
+                            <input className={cl.text_field__input} type="text" name="address" id="address" placeholder="Address"
+                            onChange={(e) => setUserAddress(e.target.value)}
+                            />
+                        </div>
 
-                    <div className={cl.text_field}>
-                        <h1 className={cl.text_field__label} for="password">Пароль</h1>
-                        <input className={cl.text_field__input} type="text" name="password" id="password" placeholder="Password"
-                        onChange={(e) => setUserPassword(e.target.value)}
-                        />
+                        <div className={cl.text_field}>
+                            <h1 className={cl.text_field__label} for="password">Пароль</h1>
+                            <input className={cl.text_field__input} type="text" name="password" id="password" placeholder="Password"
+                            onChange={(e) => setUserPassword(e.target.value)}
+                            />
+                        </div>
                     </div>
-                </div>
-                <hr className={cl.hr}/>
-                <div className={cl.button_handler}>
-                    <button className={cl.btn_login}
-                    onClick={buttonHandler}
-                    >Войти в аккаунт</button>
-                    <a className={cl.registration}
-                    onClick={() => window.location.href = "http://localhost:3000/registration"}
-                    >Зарегестрироваться</a>
-                </div>
-            </section>
+                    <hr className={cl.hr}/>
+                    <div className={cl.button_handler}>
+                        <button className={cl.btn_login}
+                        onClick={buttonHandler}
+                        >Войти в аккаунт</button>
+                        <a className={cl.registration}
+                        onClick={() => window.location.href = "http://localhost:3000/registration"}
+                        >Зарегестрироваться</a>
+                    </div>
+                </section>
+            </div>
+            : 
+            redirect()
+            }
         </div>
     );
 }

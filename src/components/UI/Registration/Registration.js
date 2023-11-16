@@ -38,10 +38,23 @@ const Registration = () => {
 
         window.location.href = "http://localhost:3000/login";
     }
+    const redirect =  () => {
+        const role = sessionStorage.getItem("role");
+        let link = "";
+        if (role == 1) {
+            link = "buyer";
+        } else if (role == 2) {
+            link = "seller";
+        } else if (role == 3) {
+            link = "admin"
+        }
 
+        window.location.href = `http://localhost:3000/${link}`
+    }
 
     return (
         <div className={cl.root}>
+            {sessionStorage.getItem("login") == false || sessionStorage.getItem("login") == null ? 
             <section className={cl.main_window}>
                 <header className={cl.header}>
                     <h1 className={cl.login}>Registration</h1>
@@ -109,6 +122,9 @@ const Registration = () => {
                     >Войти в аккаунт</a>
                 </div>
             </section>
+            :
+            redirect()
+            }
         </div>
     );
 }

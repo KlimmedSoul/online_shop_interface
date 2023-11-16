@@ -1,0 +1,112 @@
+.root {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.done_requests {
+    margin-top: 2vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 70%;
+    height: 40%;
+    background-color: bisque;
+    box-shadow: 0px 0px 10px gray;
+    border: 2px solid gray;
+}
+
+.tables {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.outgoing_requests {
+    overflow: auto;
+    margin-bottom: 2vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 70%;
+    height: 50%;
+    background-color: bisque;
+    box-shadow: 0px 0px 10px gray;
+    border: 2px solid gray;
+}
+
+.address_title, .date_title, .role {
+    margin: 0;
+    color: #121212;
+    font-family: Roboto;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 87.305%;
+}
+
+.address, .date {
+    margin: 0;
+    color: #121212;
+    font-family: Roboto;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 87.305%;
+}
+
+.role {
+    color: rgb(34, 189, 34);
+}
+
+.request_info {
+    height: 10vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.request_handler {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    width: 70%;
+    border: 1px solid black;
+}
+
+.button_handler {
+    width: 40%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn_accept, .btn_reject {
+    border: 1px solid gray;
+    cursor: pointer;
+    width: 100px;
+    height: 30px;
+}
+
+.btn_accept {
+    background-color: green;
+    color: white;
+}
+
+.btn_accept:hover {
+    background-color: rgb(8, 94, 8);
+}
+
+.btn_reject {
+    background-color: red;
+    color: white;
+}
+
+.btn_reject:hover {
+    background-color: rgb(161, 35, 35);
+}
