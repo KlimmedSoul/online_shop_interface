@@ -11,10 +11,8 @@ const Registration = () => {
     const [userEmail, setUserEmail] = useState('');
     const [userAddress, setUserAddress] = useState('');
 
-    const [firstPasswordNotShowed, setFirstPasswordNotShowed] = useState('block');
-    const [firstPasswordShowed, setFirstPasswordShowed] = useState('none');
-    const [secondPasswordNotShowed, setSecondPasswordNotShowed] = useState('block');
-    const [secondPasswordShowed, setSecondPasswordShowed] = useState('none');
+    const [firstPassword, setFirstPassword] = useState('none');
+    const [secondPassword, setSecondPassword] = useState('none');
 
     const buttonHander = async () => {
         const userAddresses = await getUserAddreses();
@@ -76,40 +74,18 @@ const Registration = () => {
                     <div className={cl.text_field}>
                         <h1 className={cl.text_field__label} for="password">Пароль</h1>
                         <div className={cl.input_handler}>
-                            <input className={cl.text_field__input} type={firstPasswordShowed == 'none' ? "password" : "text"} name="password" id="password" placeholder="Password"
+                            <input className={cl.text_field__input} type={firstPassword == 'none' ? "password" : "text"} name="password" id="password" placeholder="Password"
                             onChange={(e) => setUserPassword(e.target.value)}/>
-                            <Visibility className={cl.icon}
-                            onClick={() => {
-                                setFirstPasswordNotShowed('none')
-                                setFirstPasswordShowed('block')
-                            }}
-                            style={{display: firstPasswordNotShowed}}/>
-                            <VisibilityOff className={cl.icon}
-                            onClick={() => {
-                                setFirstPasswordShowed('none')
-                                setFirstPasswordNotShowed('block')
-                            }}
-                            style={{display: firstPasswordShowed}}/>
+                            {firstPassword == 'none' ? <Visibility onClick={()=> setFirstPassword('block')}/> : <VisibilityOff onClick={()=> setFirstPassword('none')}/>}
                         </div>
                     </div>
 
                     <div className={cl.text_field}>
                         <h1 className={cl.text_field__label} for="password">Повторите пароль</h1>
                         <div className={cl.input_handler}>
-                            <input className={cl.text_field__input} type={secondPasswordShowed == 'none' ? "password" : "text"} name="password" id="password" placeholder="Password"
+                            <input className={cl.text_field__input} type={secondPassword == 'none' ? "password" : "text"} name="password" id="password" placeholder="Password"
                             onChange={(e) => setUserSecondPassword(e.target.value)}/>
-                            <Visibility className={cl.icon}
-                            onClick={() => {
-                                setSecondPasswordNotShowed('none');
-                                setSecondPasswordShowed('block')
-                            }}
-                            style={{display: secondPasswordNotShowed}}/>
-                            <VisibilityOff className={cl.icon}
-                            onClick={() => {
-                                setSecondPasswordShowed('none');
-                                setSecondPasswordNotShowed('block');
-                            }}
-                            style={{display: secondPasswordShowed}}/>
+                            {secondPassword == 'none' ? <Visibility onClick={()=> setSecondPassword('block')}/> : <VisibilityOff onClick={()=> setSecondPassword('none')}/>}
                         </div>
                     </div>
                 </div>

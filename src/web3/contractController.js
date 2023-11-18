@@ -1,8 +1,8 @@
 import { abi } from './abi.js';
 import Web3 from 'web3';
 
-const CONTRACT_ADDRESS = "0x1D5ab4c5309c36d1f2e74B8C058D18EBfaf71f9b";
-const PORT = "http://127.0.0.1:8545";
+const CONTRACT_ADDRESS = "0x3979E3AD013b5b49D06F601676653f08e558Ac40";
+const PORT = "http://127.0.0.1:7545";
 
 let myContract, web3, accounts;
 
@@ -35,11 +35,28 @@ export async function upToAdmin(address, curAddress) {
       to: CONTRACT_ADDRESS,
       gas: 100000
     });
-    console.log(upToAdmin);
   } catch(e) {
     throw e;
   }
 }
+
+export async function addShop(admAddress, shopAddress, town, password) {
+  try {
+    await initializeWeb3();
+    const newPassword = web3.utils.soliditySha3(password);
+    console.log();
+    const newShop = await myContract.methods.create_shop(shopAddress, town, newPassword).send({
+      from: admAddress,
+      to:CONTRACT_ADDRESS,
+      gas: 1000000
+    });
+    console.log(newShop);
+  } catch (e) {
+    throw e;
+  }
+
+}
+
 
 export async function removeSeller(admAddress, sellerId, shopAddress) {
 

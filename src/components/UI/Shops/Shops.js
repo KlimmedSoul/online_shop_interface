@@ -1,17 +1,33 @@
 import React, {useEffect, useState} from "react";
 import cl from "./Shops.module.css"
-import { getAllShops, removeSeller, addSeller, removeShop } from "../../../web3/contractController";
+import { getAllShops, removeSeller, addSeller, removeShop, addShop } from "../../../web3/contractController";
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+
 
 const Shops = ({visible}) => {
 
     const [allShops, setAllShops] = useState([]);
     const [sellerAddress, setSellerAddress] = useState('');
 
+    const [passwordShowed, setPasswordShowed] = useState('none');
+
+    const [shopTown, setShopTown] = useState('');
+    const [shopPassword, setShopPassword] = useState('');
+    const [shopAddress, setShopAddress] = useState('');
+
     const deleteSellerHandler = async (id, shop) => {
         const address = sessionStorage.getItem('address');
 
         await removeSeller(address, id, shop);
         alert("Продавец успешно удален")
+        window.location.reload();
+    }
+
+    const addShopHandler = async () => {
+        const address = sessionStorage.getItem('address');
+        await addShop(address, shopAddress, shopTown, shopPassword);
+        alert("Магазин добавлен");
         window.location.reload();
     }
 
@@ -57,7 +73,7 @@ const Shops = ({visible}) => {
                                         <div className={cl.seller_handler}>
                                             <h3 className={cl.seller}>{seller.slice(0,20) + "..."}</h3>
                                             <button
-                                            onClick={ async () =>  deleteSellerHandler(id, shop.address)}
+                                            onClick={async () =>  deleteSellerHandler(id, shop.address)}
                                             >-</button>
                                         </div>
                                     ))}
@@ -80,12 +96,21 @@ const Shops = ({visible}) => {
                         <h2 className={cl.title_add}>Добавить магазин</h2>
                     </div>
                     <hr className={cl.hr}/>
-
                     <div className={cl.inputs}>
-                        <input/>
-                        <input/>
+                        <input className={cl.input_add} placeholder="Город магазина"
+                        onChange={(e) => setShopTown(e.target.value)}/>
+                        <input className={cl.input_add} placeholder="Адрес магазина"
+                        onChange={(e) => setShopAddress(e.target.value)}/>
+                        <div className={cl.vic}>
+                            <input className={cl.input_add} type={passwordShowed == 'none' ? "password" : "text"} placeholder="Пароль магазина"
+                            onChange={(e) => setShopPassword(e.target.value)}/>
+                            {passwordShowed == 'none' ? <Visibility onClick={() => setPasswordShowed('block')}/> : <VisibilityOff onClick={() => setPasswordShowed('none')}/>}
+                        </div> 
                     </div>
-                    <div className={cl.button_add}></div>
+                    <div className={cl.button_add}>
+                        <button className={cl.add_btn}
+                        onClick={() => addShopHandler()}>Создать магазин</button>
+                    </div>
                </div>
 
            </div>
