@@ -30,6 +30,24 @@ export const abi = [
 				"type": "address"
 			},
 			{
+				"internalType": "address",
+				"name": "seller_address",
+				"type": "address"
+			}
+		],
+		"name": "add_seller",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "shop_address",
+				"type": "address"
+			},
+			{
 				"internalType": "string",
 				"name": "town",
 				"type": "string"
@@ -77,6 +95,24 @@ export const abi = [
 			}
 		],
 		"name": "registration",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "shop_address",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "index",
+				"type": "uint256"
+			}
+		],
+		"name": "remove_seller",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
@@ -193,6 +229,42 @@ export const abi = [
 				"internalType": "address[]",
 				"name": "",
 				"type": "address[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "shop_address",
+				"type": "address"
+			}
+		],
+		"name": "get_shop_info",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "string",
+						"name": "town",
+						"type": "string"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "password",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "address[]",
+						"name": "sellers",
+						"type": "address[]"
+					}
+				],
+				"internalType": "struct Store.Shop",
+				"name": "",
+				"type": "tuple"
 			}
 		],
 		"stateMutability": "view",

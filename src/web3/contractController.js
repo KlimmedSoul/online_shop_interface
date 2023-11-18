@@ -1,8 +1,8 @@
 import { abi } from './abi.js';
 import Web3 from 'web3';
 
-const CONTRACT_ADDRESS = "0x364540e8acD942729FB5F87Bb7f5A0D8bFddf70d";
-const PORT = "http://127.0.0.1:7545";
+const CONTRACT_ADDRESS = "0x1D5ab4c5309c36d1f2e74B8C058D18EBfaf71f9b";
+const PORT = "http://127.0.0.1:8545";
 
 let myContract, web3, accounts;
 
@@ -41,6 +41,18 @@ export async function upToAdmin(address, curAddress) {
   }
 }
 
+export async function removeSeller(admAddress, sellerId, shopAddress) {
+
+  try {
+    const remove = await myContract.methods.remove_seller(shopAddress, sellerId).send({
+      from: admAddress,
+      to: CONTRACT_ADDRESS, 
+      gas: 3000000,
+    })
+  } catch (e) {
+    throw e;
+  }
+}
 
 export async function getUserAddreses() {
     try {
@@ -52,6 +64,19 @@ export async function getUserAddreses() {
       } catch (err) {
         throw err;
       }
+}
+
+export async function removeShop(admAddress, shopAddress) {
+  try {
+    await initializeWeb3();
+    const res = await myContract.methods.remove_shop(shopAddress).send({
+      from: admAddress,
+      to: CONTRACT_ADDRESS,
+      gas: 100000
+    })
+  } catch (e) {
+    throw e;
+  }
 }
 
 export async function getUserInfo(address, password) {
@@ -82,6 +107,52 @@ export async function getUserInfoLogin(address) {
     });
     return result;
 
+  } catch (e) {
+    throw e;
+  }
+}
+
+export async function getAllShops() {
+  try {
+    await initializeWeb3();
+    const allShopAddresses = await myContract.methods.get_shop_addreses().call({
+      gas: 100000
+    });
+    if (!allShopAddresses) {
+      return false;
+    }
+    const allShops = [];
+
+    for (let i = 0; i < allShopAddresses.length; i++) {
+      console.log(allShopAddresses[i]);
+      let shop = await myContract.methods.get_shop_info(allShopAddresses[i]).call({
+        gas: 100000
+      })
+      let newShop = {
+        address: allShopAddresses[i],
+        town: shop.town,
+        sellers: shop.sellers
+      }
+
+      allShops.push(newShop);
+    }
+
+    return allShops
+  } catch (e) {
+    throw e;
+  }
+}
+
+export async function addSeller(shopAddress, sellerAddress, admAddress) {
+  try {
+    await initializeWeb3();
+    const addSeller = await myContract.methods.add_seller(shopAddress, sellerAddress).send({
+      from:admAddress,
+      to: CONTRACT_ADDRESS,
+      gas: 100000
+    }) 
+
+    return addSeller;
   } catch (e) {
     throw e;
   }

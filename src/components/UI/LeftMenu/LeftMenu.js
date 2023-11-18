@@ -9,6 +9,7 @@ import Comment from '@mui/icons-material/InsertComment';
 import { getUserInfoLogin } from "../../../web3/contractController";
 import Requests from "../Requests/Requests";
 import UpgradeToAdmin from "../UpgradeToAdmin/UpgradeToAdmin";
+import Shops from "../Shops/Shops";
 
 const LeftMenu = () => {
 
@@ -19,39 +20,36 @@ const LeftMenu = () => {
 
     const [info, setInfo] = useState();
 
-    const [requests, setRequests] = useState('block');
-    const [toAdmin, setToAdmin] = useState('none');
-    const [shops, setShops] = useState('none');
-    const [toBuyer, setToBuyer] = useState('none')
+    let displays = JSON.parse(sessionStorage.getItem('items'));
+    if(!displays) {
+        displays = {req: "block", adm: "none", shops: "none"}
+    }
+    const [requests, setRequests] = useState(displays.req);
+    const [toAdmin, setToAdmin] = useState(displays.adm);
+    const [shops, setShops] = useState(displays.shops);
 
     const [coms, setComs] = useState('none');
 
     const requestHandler= () => {
-        setRequests('block')
-        setToAdmin('none')
-        setShops('none')
-        setToBuyer('none')
+        setRequests('block');
+        setToAdmin('none');
+        setShops('none');
+        sessionStorage.setItem('items', JSON.stringify({req: "block", adm:"none", shops:"none"}));
     }
 
     const adminHandler= () => {
         setRequests('none')
-        setToAdmin('flex')
-        setShops('none')
-        setToBuyer('none')
+        setToAdmin('flex');
+        setShops('none');
+        sessionStorage.setItem('items', JSON.stringify({req: "none", adm:"flex", shops:"none"}));
+        console.log(sessionStorage.getItem('items'));
     }
 
     const shopsHandler= () => {
-        setRequests('none')
-        setToAdmin('none')
-        setShops('block')
-        setToBuyer('none')
-    }
-
-    const buyersHandler= () => {
-        setRequests('none')
-        setToAdmin('none')
-        setShops('none')
-        setToBuyer('block')
+        setRequests('none');
+        setToAdmin('none');
+        setShops('block');
+        sessionStorage.setItem('items', JSON.stringify({req: "none", adm:"none", shops:"block"}));
     }
 
 
@@ -59,7 +57,7 @@ const LeftMenu = () => {
         {id: 0, text:"Заявки", icon: RequestController, callback: requestHandler},
         {id: 1, text:"Повысить до админа", icon: ToAdmin, callback: adminHandler},
         {id: 2, text:"Магазины",icon: ShopController, callback: shopsHandler},
-        {id: 3, text:"Стать покупателем",icon: ToBuyer, callback: buyersHandler}
+        {id: 3, text:"Стать покупателем",icon: ToBuyer}
     ];
 
     const seller = [
@@ -127,6 +125,7 @@ const LeftMenu = () => {
             </div>
             <Requests visible = {requests} />
             <UpgradeToAdmin visible = {toAdmin}/>
+            <Shops visible = {shops}/>
         </section>
     );
 }

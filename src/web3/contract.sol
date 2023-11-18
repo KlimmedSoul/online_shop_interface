@@ -15,7 +15,6 @@ contract Store {
         address[] sellers; 
     }
 
-
     struct Comment {
         address shop_address;
         address user;
@@ -48,27 +47,30 @@ contract Store {
     Comment[] all_comments;
     constructor() {
         // LOLOLOL
-        users[0x90ED4a12507052320421e384e664A1996BCd8275] = User("putin@mail.ru", 0xd19b1daae14f69657db836ab6f51534a23d83d05fd3c2a7c7d6eaa6ab0b7237b, 3);
-        user_addresses.push(0x90ED4a12507052320421e384e664A1996BCd8275);
+        users[0x73E9373b8a127B12e98fbDB8a9Fa6B0A92B9B9DB] = User("putin@mail.ru", 0xd19b1daae14f69657db836ab6f51534a23d83d05fd3c2a7c7d6eaa6ab0b7237b, 3);
+        user_addresses.push(0x73E9373b8a127B12e98fbDB8a9Fa6B0A92B9B9DB);
 
-        users[0x6A4af29aFdE7D534E87122C969712846a1c70017] = User("biden@mail.ru", 0xd19b1daae14f69657db836ab6f51534a23d83d05fd3c2a7c7d6eaa6ab0b7237b, 2);
-        user_addresses.push(0x6A4af29aFdE7D534E87122C969712846a1c70017);
+        users[0x8ed14B0992Ea1a5BC062e9C8bE6711F7B03602FB] = User("biden@mail.ru", 0xd19b1daae14f69657db836ab6f51534a23d83d05fd3c2a7c7d6eaa6ab0b7237b, 2);
+        user_addresses.push(0x8ed14B0992Ea1a5BC062e9C8bE6711F7B03602FB);
 
-        users[0x2bF38B2880A885a50D6e91e29a45B01bF24c3550] = User("obama@mail.ru", 0xd19b1daae14f69657db836ab6f51534a23d83d05fd3c2a7c7d6eaa6ab0b7237b, 1);
-        user_addresses.push(0x2bF38B2880A885a50D6e91e29a45B01bF24c3550);
+        users[0xee88DDB262aE315036b1BE67fbd46d9B77A05870] = User("biden1@mail.ru", 0xd19b1daae14f69657db836ab6f51534a23d83d05fd3c2a7c7d6eaa6ab0b7237b, 2);
+        user_addresses.push(0xee88DDB262aE315036b1BE67fbd46d9B77A05870);
 
-        users[0x4389243b581693AeDc8c26FF500BcCb265e3b9e9] = User("simba@mail.ru", 0xd19b1daae14f69657db836ab6f51534a23d83d05fd3c2a7c7d6eaa6ab0b7237b, 1);
-        user_addresses.push(0x4389243b581693AeDc8c26FF500BcCb265e3b9e9);
+        users[0xD95AE5b99A535bc5edF8FB4637eD94b703ebec8A] = User("obama@mail.ru", 0xd19b1daae14f69657db836ab6f51534a23d83d05fd3c2a7c7d6eaa6ab0b7237b, 1);
+        user_addresses.push(0xD95AE5b99A535bc5edF8FB4637eD94b703ebec8A);
+
+        users[0xe7b351c07d28507227B0E7fBA05D6c99a20f0eF3] = User("simba@mail.ru", 0xd19b1daae14f69657db836ab6f51534a23d83d05fd3c2a7c7d6eaa6ab0b7237b, 1);
+        user_addresses.push(0xe7b351c07d28507227B0E7fBA05D6c99a20f0eF3);
 
         address[] memory _sellers = new address[](1);
-        _sellers[0] = 0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2;
-        shops[0x64467454743B4c12067D4FC3Bb0f0e8AcBB3640c] = Shop("Kaluga",  0xd19b1daae14f69657db836ab6f51534a23d83d05fd3c2a7c7d6eaa6ab0b7237b, _sellers);
-        shop_addresses.push(0x64467454743B4c12067D4FC3Bb0f0e8AcBB3640c);
+        _sellers[0] = 0x8ed14B0992Ea1a5BC062e9C8bE6711F7B03602FB;
+        shops[0xe232dc2072D64b7EF59dEe6cbaCF0c99edDA96Fa] = Shop("Kaluga",  0xd19b1daae14f69657db836ab6f51534a23d83d05fd3c2a7c7d6eaa6ab0b7237b, _sellers);
+        shop_addresses.push(0xe232dc2072D64b7EF59dEe6cbaCF0c99edDA96Fa);
 
-        requests.push(Request(0x6A4af29aFdE7D534E87122C969712846a1c70017, 1700061348, 2, true, true));
-        requests.push(Request(0x6A4af29aFdE7D534E87122C969712846a1c70017, 1700061348, 1, false, false));
-        requests.push(Request(0x2bF38B2880A885a50D6e91e29a45B01bF24c3550, 1700061348, 2, true, false));
-        requests.push(Request(0x4389243b581693AeDc8c26FF500BcCb265e3b9e9, 1700061348, 2, false, false));
+        requests.push(Request(0x8ed14B0992Ea1a5BC062e9C8bE6711F7B03602FB, 1700061348, 2, true, true));
+        requests.push(Request(0x8ed14B0992Ea1a5BC062e9C8bE6711F7B03602FB, 1700061348, 1, false, false));
+        requests.push(Request(0xD95AE5b99A535bc5edF8FB4637eD94b703ebec8A, 1700061348, 2, true, false));
+        requests.push(Request(0xe7b351c07d28507227B0E7fBA05D6c99a20f0eF3, 1700061348, 2, false, false));
     }
 
     function registration(string memory user_email, bytes32 user_password) public {
@@ -124,6 +126,7 @@ contract Store {
         requests[request_id].done = true;
         requests[request_id].accepted = true;
     }
+    
 
     function request_reject(uint request_id) public {
         require(users[msg.sender].role == 3, "u aren't a admin");
@@ -137,8 +140,7 @@ contract Store {
     function remove_shop(address shop_address) public  {
         require(users[msg.sender].role == 3, "u aren't admin");
         require(keccak256(abi.encodePacked(shops[shop_address].town)) != keccak256(abi.encodePacked("")), "the shop doesn't exist");
-        delete shops[msg.sender];
-
+        delete shops[shop_address];
         uint index;
         for(uint i = 0; i < shop_addresses.length; i++) {
             if (shop_addresses[i] == shop_address) {
@@ -149,7 +151,6 @@ contract Store {
             shop_addresses[i] = shop_addresses[i + 1];
         }
         shop_addresses.pop();
-
     }
 
     function create_shop(address shop_address, string memory town, bytes32 password) public {
@@ -161,6 +162,25 @@ contract Store {
         address[] memory _sellers;
         shops[shop_address] = Shop(town, password, _sellers);
     }
+
+    function remove_seller(address shop_address, uint index) public {
+        require(users[msg.sender].role == 3, "u aren't admin");
+        for(uint i = index; i < shops[shop_address].sellers.length - 1; i++) {
+            shops[shop_address].sellers[i] = shops[shop_address].sellers[i + 1];
+        }
+        shops[shop_address].sellers.pop();
+    }
+
+    function add_seller(address shop_address, address seller_address) public {
+        require(users[seller_address].role == 2, "user aren't seller");
+        require(users[msg.sender].role == 3, "u aren't admin");
+        for(uint i = 0; i < shops[shop_address].sellers.length; i++) {
+            require(shops[shop_address].sellers[i] != shop_address, "seller already registered");
+        }
+        shops[shop_address].sellers.push(seller_address);
+    }
+
+
 
     function add_comment(address _shop_address, string memory _text, uint _rating) public {
         require(users[msg.sender].role != 3, "admin can't comment");
@@ -198,6 +218,10 @@ contract Store {
 
     function get_requests() public view returns(Request[] memory) {
         return requests;
+    }
+
+    function get_shop_info(address shop_address) public view returns(Shop memory) {
+        return shops[shop_address];
     }
 
     function get_user_info(address user_address) public view returns (User memory) {

@@ -1,0 +1,113 @@
+.root {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+}
+
+.main {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+}
+
+.all_shops {
+    background-color: bisque;
+    border: 2px solid gray;
+    box-shadow: 0px 0px 6px gray;
+    width: 80%;
+    height: 40vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    overflow: auto;
+}
+
+.town {
+    font-size: 25px;
+}
+
+.shop_town,
+.all_sellers {
+    margin: 0;
+    color: #121212;
+    font-family: Roboto;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 87.305%;
+}
+
+.sellers {
+    margin-top: 3%;
+}
+
+.shop {
+    width: 60%;
+    border: 2px solid black;
+    padding: 20px;
+    margin: 20px;
+}
+
+.seller_handler {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 25%;
+}
+
+.seller_and_delete {
+    display: flex;
+    justify-content: space-between;
+}
+
+.delete_shop_btn {
+    cursor: pointer;
+    background-color: red;
+    color: white;
+    width: 400px;
+    height: 150px;
+    font-size: 40px
+}
+
+.delete_shop_btn:hover {
+    background-color: rgb(172, 18, 18);
+}
+
+.add_shop {
+    background-color: bisque;
+    border: 2px solid gray;
+    box-shadow: 0px 0px 6px gray;
+    width: 80%;
+    height: 40vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    overflow: auto;
+}
+
+.add_header {
+    margin-top: 2%;
+}
+
+.title_add {
+    margin: 0;
+    color: #121212;
+    font-family: Roboto;
+    font-size: 50px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 87.305%;
+}
+
+.hr {
+    margin-top: 2%;
+    width: 100%;
+    background-color: black;
+    color: black;
+    border: 1px solid rgb(0, 0, 0);
+}
