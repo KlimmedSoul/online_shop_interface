@@ -1,7 +1,7 @@
 import { abi } from './abi.js';
 import Web3 from 'web3';
 
-const CONTRACT_ADDRESS = "0x3979E3AD013b5b49D06F601676653f08e558Ac40";
+const CONTRACT_ADDRESS = "0x914784b89Cb72C9E7D41F0302DAb9F9D8747406B";
 const PORT = "http://127.0.0.1:7545";
 
 let myContract, web3, accounts;
@@ -27,6 +27,18 @@ export async function registration(email, password, address) {
   }
 }
 
+export async function getUserRequest(userAddress) {
+    try {
+      await initializeWeb3();
+      const result = await myContract.methods.get_user_request(userAddress).call({
+        gas:100000
+      });
+      return result;
+    } catch (e) {
+
+    }
+}
+
 export async function upToAdmin(address, curAddress) {
   try {
     await initializeWeb3();
@@ -36,6 +48,19 @@ export async function upToAdmin(address, curAddress) {
       gas: 100000
     });
   } catch(e) {
+    throw e;
+  }
+}
+
+export async function sendRequest(userAddress) {
+  try {
+    await initializeWeb3();
+    await myContract.methods.send_request().send({
+      from: userAddress,
+      to: CONTRACT_ADDRESS,
+      gas: 1000000
+    });
+  } catch (e) {
     throw e;
   }
 }

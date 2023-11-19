@@ -10,6 +10,8 @@ import { getUserInfoLogin } from "../../../web3/contractController";
 import Requests from "../Requests/Requests";
 import UpgradeToAdmin from "../UpgradeToAdmin/UpgradeToAdmin";
 import Shops from "../Shops/Shops";
+import SendRequest from "../SendRequest/SendRequest";
+
 
 const LeftMenu = () => {
 
@@ -17,31 +19,43 @@ const LeftMenu = () => {
     } else {
         window.location.href = "http://localhost:3000/login"
     }
+    const curRole = sessionStorage.getItem('role');
 
     const [info, setInfo] = useState();
-
     let displays = JSON.parse(sessionStorage.getItem('items'));
-    if(!displays) {
-        displays = {req: "block", adm: "none", shops: "none"}
+    if(!displays && curRole == 3) {
+        displays = {req: "none", adm: "none", shops: "none", sendReq: "none", coms: "none"}
+    } else if (!displays && curRole == 1) {
+        displays = {req: "none", adm: "none", shops: "none", sendReq: "block", coms: "none"}
     }
+
+
+    // buyer
+    const [comments, setComments] = useState('none');
+    const [sendRequest, setSendRequest] = useState('block');
+
+
+    // admin
     const [requests, setRequests] = useState(displays.req);
     const [toAdmin, setToAdmin] = useState(displays.adm);
     const [shops, setShops] = useState(displays.shops);
-
-    const [coms, setComs] = useState('none');
 
     const requestHandler= () => {
         setRequests('block');
         setToAdmin('none');
         setShops('none');
-        sessionStorage.setItem('items', JSON.stringify({req: "block", adm:"none", shops:"none"}));
+        setComments('none');
+        setSendRequest('none');
+        sessionStorage.setItem('items', JSON.stringify({req: "block", adm:"none", shops:"none", sendReq: "none", coms: "none"}));
     }
 
     const adminHandler= () => {
         setRequests('none')
         setToAdmin('flex');
         setShops('none');
-        sessionStorage.setItem('items', JSON.stringify({req: "none", adm:"flex", shops:"none"}));
+        setComments('none');
+        setSendRequest('none');
+        sessionStorage.setItem('items', JSON.stringify({req: "none", adm:"flex", shops:"none", sendReq: "none", coms: "none"}));
         console.log(sessionStorage.getItem('items'));
     }
 
@@ -49,10 +63,28 @@ const LeftMenu = () => {
         setRequests('none');
         setToAdmin('none');
         setShops('block');
-        sessionStorage.setItem('items', JSON.stringify({req: "none", adm:"none", shops:"block"}));
+        setComments('none');
+        setSendRequest('none');
+        sessionStorage.setItem('items', JSON.stringify({req: "none", adm:"none", shops:"block", sendReq: "none", coms: "none"}));
     }
 
+    const sendRequestHandler = () => {
+        setRequests('none');
+        setToAdmin('none');
+        setShops('none');
+        setComments('none');
+        setSendRequest('block');
+        sessionStorage.setItem('items', JSON.stringify({req: "none", adm:"none", shops:"none", sendReq: "block", coms: "none"}));
+    }
 
+    const comsHandler = () => {
+        setRequests('none');
+        setToAdmin('none');
+        setShops('none');
+        setComments('none');
+        setSendRequest('block');
+        sessionStorage.setItem('items', JSON.stringify({req: "none", adm:"none", shops:"none", sendReq: "none", coms: "block"}));
+    }
     const admin = [
         {id: 0, text:"Заявки", icon: RequestController, callback: requestHandler},
         {id: 1, text:"Повысить до админа", icon: ToAdmin, callback: adminHandler},
@@ -61,8 +93,8 @@ const LeftMenu = () => {
     ];
 
     const seller = [
-    {id: 0, text:"Отправить заявку", icon: RequestController, controller: setRequests, display: requests},
-    {id: 1, text:"Комментарии", icon:Comment, controller: setComs, display: coms}
+        {id: 0, text:"Отправить заявку", icon: RequestController, callback: sendRequestHandler},
+        {id: 1, text:"Комментарии", icon:Comment, callback: comsHandler}
     ];
 
 
@@ -123,9 +155,16 @@ const LeftMenu = () => {
                     <h3 className={cl.title_text}>Выход</h3>
                 </div>
             </div>
-            <Requests visible = {requests} />
-            <UpgradeToAdmin visible = {toAdmin}/>
-            <Shops visible = {shops}/>
+            {curRole == 3 ? 
+            <div>
+                <Requests visible = {requests} />
+                <UpgradeToAdmin visible = {toAdmin}/>
+                <Shops visible = {shops}/>
+            </div>
+            : curRole == 1 ?
+            <div>
+                <SendRequest visible={sendRequest}/>
+            </div> : null}
         </section>
     );
 }

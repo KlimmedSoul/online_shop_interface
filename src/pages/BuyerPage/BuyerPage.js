@@ -6,9 +6,9 @@ const Buyer = () => {
 
 
     return (
-        <div>
+        <main className={cl.root}>
             <LeftMenu/>
-        </div>
+        </main>
     );
 }
 
