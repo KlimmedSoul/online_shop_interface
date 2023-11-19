@@ -47,30 +47,30 @@ contract Store {
     Comment[] all_comments;
     constructor() {
         // LOLOLOL
-        users[0xfa105Da0a67A9029E691E933e48d3EaE4F4A58c3] = User("putin@mail.ru", 0xd19b1daae14f69657db836ab6f51534a23d83d05fd3c2a7c7d6eaa6ab0b7237b, 3);
-        user_addresses.push(0xfa105Da0a67A9029E691E933e48d3EaE4F4A58c3);
+        users[0x668720B566a149D83eF8864B42F1aE6797A77cbA] = User("putin@mail.ru", 0xd19b1daae14f69657db836ab6f51534a23d83d05fd3c2a7c7d6eaa6ab0b7237b, 3);
+        user_addresses.push(0x668720B566a149D83eF8864B42F1aE6797A77cbA);
 
-        users[0x13036b2e0D0E5D09a816a259eB66f9368B68cD76] = User("biden@mail.ru", 0xd19b1daae14f69657db836ab6f51534a23d83d05fd3c2a7c7d6eaa6ab0b7237b, 2);
-        user_addresses.push(0x13036b2e0D0E5D09a816a259eB66f9368B68cD76);
+        users[0x3Cf19efC0a3868bb9f3CCa0cE9529E11E8B04485] = User("biden@mail.ru", 0xd19b1daae14f69657db836ab6f51534a23d83d05fd3c2a7c7d6eaa6ab0b7237b, 2);
+        user_addresses.push(0x3Cf19efC0a3868bb9f3CCa0cE9529E11E8B04485);
 
-        users[0xe3b23AfEF97168560723A4CfEDa0CB89E1d82A8E] = User("biden1@mail.ru", 0xd19b1daae14f69657db836ab6f51534a23d83d05fd3c2a7c7d6eaa6ab0b7237b, 2);
-        user_addresses.push(0xe3b23AfEF97168560723A4CfEDa0CB89E1d82A8E);
+        users[0xe53D6128323e8C9A601a07Caae2AC2C9BB2a227e] = User("biden1@mail.ru", 0xd19b1daae14f69657db836ab6f51534a23d83d05fd3c2a7c7d6eaa6ab0b7237b, 2);
+        user_addresses.push(0xe53D6128323e8C9A601a07Caae2AC2C9BB2a227e);
 
-        users[0xd17d4a16526b34409BA121a5bc9b278EB4ba12A7] = User("obama@mail.ru", 0xd19b1daae14f69657db836ab6f51534a23d83d05fd3c2a7c7d6eaa6ab0b7237b, 1);
-        user_addresses.push(0xd17d4a16526b34409BA121a5bc9b278EB4ba12A7);
+        users[0x505E4D5678A64D30b5fD42564C0f492A0E91a013] = User("obama@mail.ru", 0xd19b1daae14f69657db836ab6f51534a23d83d05fd3c2a7c7d6eaa6ab0b7237b, 1);
+        user_addresses.push(0x505E4D5678A64D30b5fD42564C0f492A0E91a013);
 
-        users[0x0f1A02C1B51C26e7Ce80479AA8Bd5A550C51b4c3] = User("simba@mail.ru", 0xd19b1daae14f69657db836ab6f51534a23d83d05fd3c2a7c7d6eaa6ab0b7237b, 1);
-        user_addresses.push(0x0f1A02C1B51C26e7Ce80479AA8Bd5A550C51b4c3);
+        users[0xfA8Cb3ee5cd1eE02a827616628313A144409Af01] = User("simba@mail.ru", 0xd19b1daae14f69657db836ab6f51534a23d83d05fd3c2a7c7d6eaa6ab0b7237b, 1);
+        user_addresses.push(0xfA8Cb3ee5cd1eE02a827616628313A144409Af01);
 
         address[] memory _sellers = new address[](1);
-        _sellers[0] = 0x8ed14B0992Ea1a5BC062e9C8bE6711F7B03602FB;
-        shops[0xe3b23AfEF97168560723A4CfEDa0CB89E1d82A8E] = Shop("Kaluga",  0xd19b1daae14f69657db836ab6f51534a23d83d05fd3c2a7c7d6eaa6ab0b7237b, _sellers);
-        shop_addresses.push(0xe3b23AfEF97168560723A4CfEDa0CB89E1d82A8E);
+        _sellers[0] = 0x3Cf19efC0a3868bb9f3CCa0cE9529E11E8B04485;
+        shops[0xfA8Cb3ee5cd1eE02a827616628313A144409Af01] = Shop("Kaluga",  0xd19b1daae14f69657db836ab6f51534a23d83d05fd3c2a7c7d6eaa6ab0b7237b, _sellers);
+        shop_addresses.push(0xfA8Cb3ee5cd1eE02a827616628313A144409Af01);
 
-        requests.push(Request(0x13036b2e0D0E5D09a816a259eB66f9368B68cD76, 1700061348, 2, true, true));
-        requests.push(Request(0x13036b2e0D0E5D09a816a259eB66f9368B68cD76, 1700061348, 1, false, false));
-        requests.push(Request(0xd17d4a16526b34409BA121a5bc9b278EB4ba12A7, 1700061348, 2, true, false));
-        requests.push(Request(0x0f1A02C1B51C26e7Ce80479AA8Bd5A550C51b4c3, 1700061348, 2, false, false));
+        requests.push(Request(0x3Cf19efC0a3868bb9f3CCa0cE9529E11E8B04485, 1700061348, 2, true, true));
+        requests.push(Request(0x3Cf19efC0a3868bb9f3CCa0cE9529E11E8B04485, 1700061348, 1, false, false));
+        requests.push(Request(0x505E4D5678A64D30b5fD42564C0f492A0E91a013, 1700061348, 2, true, false));
+        requests.push(Request(0xfA8Cb3ee5cd1eE02a827616628313A144409Af01, 1700061348, 2, false, false));
     }
 
     function registration(string memory user_email, bytes32 user_password) public {
@@ -80,6 +80,17 @@ contract Store {
         }
         users[msg.sender] = User(user_email, user_password, 1);
         user_addresses.push(msg.sender);
+    }
+
+    function get_user_request(address _user_address) public view returns (bool) {
+        for(uint i = 0; i < requests.length; i++) {
+            if(requests[i].user_address == _user_address) {
+                if(requests[i].done == false) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     function up_to_admin(address user_address) public {
