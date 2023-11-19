@@ -2,9 +2,9 @@ export const abi = [
 	{
 		"inputs": [
 			{
-				"internalType": "address",
-				"name": "_shop_address",
-				"type": "address"
+				"internalType": "uint256",
+				"name": "_rate",
+				"type": "uint256"
 			},
 			{
 				"internalType": "string",
@@ -12,12 +12,12 @@ export const abi = [
 				"type": "string"
 			},
 			{
-				"internalType": "uint256",
-				"name": "_rating",
-				"type": "uint256"
+				"internalType": "address",
+				"name": "_shop_address",
+				"type": "address"
 			}
 		],
-		"name": "add_comment",
+		"name": "add_grade",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
@@ -67,7 +67,7 @@ export const abi = [
 		"inputs": [
 			{
 				"internalType": "uint256",
-				"name": "comment_id",
+				"name": "index",
 				"type": "uint256"
 			},
 			{
@@ -76,7 +76,7 @@ export const abi = [
 				"type": "bool"
 			}
 		],
-		"name": "rate_comment",
+		"name": "rate_grade",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
@@ -179,6 +179,56 @@ export const abi = [
 		"name": "up_to_admin",
 		"outputs": [],
 		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "get_all_grades",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "uint256",
+						"name": "rating",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "text",
+						"type": "string"
+					},
+					{
+						"internalType": "address",
+						"name": "user_address",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "shop_address",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "likes",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "dislikes",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address[]",
+						"name": "users",
+						"type": "address[]"
+					}
+				],
+				"internalType": "struct Store.Grade[]",
+				"name": "",
+				"type": "tuple[]"
+			}
+		],
+		"stateMutability": "view",
 		"type": "function"
 	},
 	{
@@ -333,56 +383,6 @@ export const abi = [
 				"internalType": "bool",
 				"name": "",
 				"type": "bool"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "getComments",
-		"outputs": [
-			{
-				"components": [
-					{
-						"internalType": "address",
-						"name": "shop_address",
-						"type": "address"
-					},
-					{
-						"internalType": "address",
-						"name": "user",
-						"type": "address"
-					},
-					{
-						"internalType": "string",
-						"name": "text",
-						"type": "string"
-					},
-					{
-						"internalType": "uint256",
-						"name": "likes",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "dislikes",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "rating",
-						"type": "uint256"
-					},
-					{
-						"internalType": "address[]",
-						"name": "users",
-						"type": "address[]"
-					}
-				],
-				"internalType": "struct Store.Comment[]",
-				"name": "",
-				"type": "tuple[]"
 			}
 		],
 		"stateMutability": "view",

@@ -1,7 +1,7 @@
 import { abi } from './abi.js';
 import Web3 from 'web3';
 
-const CONTRACT_ADDRESS = "0x914784b89Cb72C9E7D41F0302DAb9F9D8747406B";
+const CONTRACT_ADDRESS = "0x5cf2B9aFb965359481f2d5B213863436509C2840";
 const PORT = "http://127.0.0.1:7545";
 
 let myContract, web3, accounts;
@@ -180,6 +180,39 @@ export async function getAllShops() {
     }
 
     return allShops
+  } catch (e) {
+    throw e;
+  }
+}
+
+
+export async function getShopsAddresses() {
+  try {
+    await initializeWeb3();
+    const res = await myContract.methods.get_shop_addreses().call({
+      gas:100000
+    })
+    return res;
+  } catch (e) {
+    throw e;
+  }
+}
+
+export async function getShopGrades(shopAddress) {
+  try {
+    await initializeWeb3();
+    const res = await myContract.methods.get_all_grades().call({
+      gas: 100000
+    })
+
+    const grades = [];
+    for(let i = 0; i < res.length; i++) {
+      if (res[i].shop_address == shopAddress) {
+        grades.push(res[i]);
+      }
+    }
+    console.log(grades);
+    return grades;
   } catch (e) {
     throw e;
   }

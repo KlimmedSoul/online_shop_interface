@@ -75,3 +75,10 @@
     height: 15vh;
     align-items: center;
 }
+
+.item_handler {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}

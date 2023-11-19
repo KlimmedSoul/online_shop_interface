@@ -1,0 +1,102 @@
+.root {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.main {
+    box-shadow: 0px 0px 10px gray;
+    border: 1px solid gray;
+    background-color: bisque;
+    width: 80%;
+    height: 90%;
+}
+
+.title {
+    margin: 0;
+    color: black;
+    font-family: Roboto;
+    font-size: 50px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 87.305%;
+    margin-bottom: 2%;
+}
+
+.shop_select {
+    height: 4vh;
+    width: 35%;
+
+}
+
+.hr {
+    margin-top: 2%;
+    background-color: black;
+    color: black;
+    border: 1px solid gray;
+}
+
+.header {
+    margin-top: 2%;
+    height: 15%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.comments {
+    height: 55%;
+}
+
+.select_rate {
+    margin-right: 5%;
+    width: 10vh;
+    height: 10vh;
+    font-size: 50px;
+    font-family: Roboto;
+    padding-left: 15px;
+}
+
+.input {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 18%;
+}
+
+.input_text {
+    border: 0;
+    background-color: white;
+    width: 40vw;
+    height: 10vh;
+    resize: none;
+    color: black;
+    font-family: Roboto;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    font-family: Roboto;
+    line-height: 87.305%;
+}
+
+
+.send_rate {
+    cursor: pointer;
+    width: 15vh;
+    height: 10vh;
+    margin-left: 5%;
+    border: 1px solid green;
+    background-color: green;
+    box-shadow: 0px 0px 10px gray;
+    color: white;
+    font-family: Roboto;
+    font-size: 20px;
+}
+
+.send_rate:hover{
+    background-color: rgb(2, 83, 2);
+}

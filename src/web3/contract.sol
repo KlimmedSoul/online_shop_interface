@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: GPL-3.0
+// SPDX-License-Identifier: GPL-5.0
 
 pragma solidity >=0.8.2;
 contract Store {
@@ -15,17 +15,18 @@ contract Store {
         address[] sellers; 
     }
 
-    struct Comment {
-        address shop_address;
-        address user;
+    struct Grade {
+        uint rating;
         string text;
-        // кол-во лайков
+        address user_address;
+        address shop_address;
         uint likes;
         uint dislikes;
-        // оценка пользователя
-        uint rating; 
         // те кто оценили пост
         address[] users;
+
+        // address[] com_users;
+        // string[] com_texts;
     }
 
     struct Request {
@@ -38,39 +39,40 @@ contract Store {
     }
 
     Request[] requests;
-
+    Grade[] all_grades;
     mapping(address => User) users;
     address[] user_addresses;
 
     mapping(address => Shop) shops;
     address[] shop_addresses;
-    Comment[] all_comments;
     constructor() {
         // LOLOLOL
-        users[0x668720B566a149D83eF8864B42F1aE6797A77cbA] = User("putin@mail.ru", 0xd19b1daae14f69657db836ab6f51534a23d83d05fd3c2a7c7d6eaa6ab0b7237b, 3);
-        user_addresses.push(0x668720B566a149D83eF8864B42F1aE6797A77cbA);
+        users[0x0A6fc465Df91653551bA827983B67F35E55Ba828] = User("putin@mail.ru", 0xd19b1daae14f69657db836ab6f51534a23d83d05fd3c2a7c7d6eaa6ab0b7237b, 3);
+        user_addresses.push(0x0A6fc465Df91653551bA827983B67F35E55Ba828);
 
-        users[0x3Cf19efC0a3868bb9f3CCa0cE9529E11E8B04485] = User("biden@mail.ru", 0xd19b1daae14f69657db836ab6f51534a23d83d05fd3c2a7c7d6eaa6ab0b7237b, 2);
-        user_addresses.push(0x3Cf19efC0a3868bb9f3CCa0cE9529E11E8B04485);
+        users[0xb715DcB369bfE33707c6d67d499c165791407476] = User("biden@mail.ru", 0xd19b1daae14f69657db836ab6f51534a23d83d05fd3c2a7c7d6eaa6ab0b7237b, 2);
+        user_addresses.push(0xb715DcB369bfE33707c6d67d499c165791407476);
 
-        users[0xe53D6128323e8C9A601a07Caae2AC2C9BB2a227e] = User("biden1@mail.ru", 0xd19b1daae14f69657db836ab6f51534a23d83d05fd3c2a7c7d6eaa6ab0b7237b, 2);
-        user_addresses.push(0xe53D6128323e8C9A601a07Caae2AC2C9BB2a227e);
+        users[0xb715DcB369bfE33707c6d67d499c165791407476] = User("biden1@mail.ru", 0xd19b1daae14f69657db836ab6f51534a23d83d05fd3c2a7c7d6eaa6ab0b7237b, 2);
+        user_addresses.push(0xb715DcB369bfE33707c6d67d499c165791407476);
 
-        users[0x505E4D5678A64D30b5fD42564C0f492A0E91a013] = User("obama@mail.ru", 0xd19b1daae14f69657db836ab6f51534a23d83d05fd3c2a7c7d6eaa6ab0b7237b, 1);
-        user_addresses.push(0x505E4D5678A64D30b5fD42564C0f492A0E91a013);
+        users[0xBD5Dabab7C1006c4eD857babEeCeCD23922401e6] = User("obama@mail.ru", 0xd19b1daae14f69657db836ab6f51534a23d83d05fd3c2a7c7d6eaa6ab0b7237b, 1);
+        user_addresses.push(0xBD5Dabab7C1006c4eD857babEeCeCD23922401e6);
 
-        users[0xfA8Cb3ee5cd1eE02a827616628313A144409Af01] = User("simba@mail.ru", 0xd19b1daae14f69657db836ab6f51534a23d83d05fd3c2a7c7d6eaa6ab0b7237b, 1);
-        user_addresses.push(0xfA8Cb3ee5cd1eE02a827616628313A144409Af01);
+        users[0xB28B12625E23d51Df16614898c453b2f37cEa37c] = User("simba@mail.ru", 0xd19b1daae14f69657db836ab6f51534a23d83d05fd3c2a7c7d6eaa6ab0b7237b, 1);
+        user_addresses.push(0xB28B12625E23d51Df16614898c453b2f37cEa37c);
 
         address[] memory _sellers = new address[](1);
-        _sellers[0] = 0x3Cf19efC0a3868bb9f3CCa0cE9529E11E8B04485;
-        shops[0xfA8Cb3ee5cd1eE02a827616628313A144409Af01] = Shop("Kaluga",  0xd19b1daae14f69657db836ab6f51534a23d83d05fd3c2a7c7d6eaa6ab0b7237b, _sellers);
-        shop_addresses.push(0xfA8Cb3ee5cd1eE02a827616628313A144409Af01);
+        _sellers[0] = 0xb715DcB369bfE33707c6d67d499c165791407476;
+        shops[0xcA0DBfd5bC05324A6A8768d4438A152395746268] = Shop("Kaluga",  0xd19b1daae14f69657db836ab6f51534a23d83d05fd3c2a7c7d6eaa6ab0b7237b, _sellers);
+        shop_addresses.push(0xcA0DBfd5bC05324A6A8768d4438A152395746268);
 
-        requests.push(Request(0x3Cf19efC0a3868bb9f3CCa0cE9529E11E8B04485, 1700061348, 2, true, true));
-        requests.push(Request(0x3Cf19efC0a3868bb9f3CCa0cE9529E11E8B04485, 1700061348, 1, false, false));
-        requests.push(Request(0x505E4D5678A64D30b5fD42564C0f492A0E91a013, 1700061348, 2, true, false));
-        requests.push(Request(0xfA8Cb3ee5cd1eE02a827616628313A144409Af01, 1700061348, 2, false, false));
+        requests.push(Request(0xb715DcB369bfE33707c6d67d499c165791407476, 1700061348, 2, true, true));
+        requests.push(Request(0xb715DcB369bfE33707c6d67d499c165791407476, 1700061348, 1, false, false));
+        requests.push(Request(0xBD5Dabab7C1006c4eD857babEeCeCD23922401e6, 1700061348, 2, true, false));
+        requests.push(Request(0xB28B12625E23d51Df16614898c453b2f37cEa37c, 1700061348, 2, false, false));
+        address[] memory _us;
+        all_grades.push(Grade(5, "takoy sebe magaz xd", 0xBD5Dabab7C1006c4eD857babEeCeCD23922401e6, 0xcA0DBfd5bC05324A6A8768d4438A152395746268, 0, 0, _us));
     }
 
     function registration(string memory user_email, bytes32 user_password) public {
@@ -192,32 +194,58 @@ contract Store {
     }
 
 
-
-    function add_comment(address _shop_address, string memory _text, uint _rating) public {
-        require(users[msg.sender].role != 3, "admin can't comment");
-        require(keccak256(abi.encodePacked(shops[_shop_address].town)) != keccak256(abi.encodePacked("")), "the shop doesn't exist");
-        require(keccak256(abi.encodePacked(_text)) != keccak256(abi.encodePacked("")), "message empty");
-        address[] memory users_comment;
-        all_comments.push(Comment(_shop_address, msg.sender, _text, 0, 0, _rating, users_comment));
+    function add_grade(uint _rate, string  memory _text, address _shop_address) public {
+        bool flag = false;
+        for(uint i = 0; i < shop_addresses.length; i++) {
+            if(shop_addresses[i] == _shop_address){
+                flag = true;
+            }
+        }
+        require(flag == true, "shop aren't exists");
+        // address[] memory _com_users;
+        // string[] memory _com_texts;
+        address[] memory _users;
+        all_grades.push(Grade(_rate, _text, msg.sender, _shop_address, 0, 0, _users));
     }
 
-    function rate_comment(uint comment_id, bool rate) public {
-        require(keccak256(abi.encodePacked(users[msg.sender].email)) != keccak256(abi.encodePacked("")), "u aren't registered");
-        for(uint i = 0; i < all_comments[comment_id].users.length; i++) {
-            require(all_comments[comment_id].users[i] != msg.sender, "u already rate this comment");
-        }
-        if (rate) {
-            all_comments[comment_id].likes += 1;
+    // function add_comment(uint index, string memory _text) public {
+    //     all_grades[index].com_users.push(msg.sender);
+    //     all_grades[index].com_texts.push(_text);
+    // }
+
+    function rate_grade(uint index, bool rate) public {
+        require(users[msg.sender].role != 3, "only buyer and seller can comment shop");
+
+        if(rate) {
+            all_grades[index].likes += 1;
         } else {
-            all_comments[comment_id].dislikes += 1;
+            all_grades[index].dislikes += 1;
         }
 
-        all_comments[comment_id].users.push(msg.sender);
-    }
+        all_grades[index].users.push(msg.sender);
+    } 
 
-    function getComments() public view returns(Comment[] memory) {
-        return all_comments;
-    }
+    // function rate_comment(uint comment_id, bool rate) public {
+    //     require(keccak256(abi.encodePacked(users[msg.sender].email)) != keccak256(abi.encodePacked("")), "u aren't registered");
+    //     for(uint i = 0; i < all_comments[comment_id].users.length; i++) {
+    //         require(all_comments[comment_id].users[i] != msg.sender, "u already rate this comment");
+    //     }
+    //     if (rate) {
+    //         all_comments[comment_id].likes += 1;
+    //     } else {
+    //         all_comments[comment_id].dislikes += 1;
+    //     }
+
+    //     all_comments[comment_id].users.push(msg.sender);
+    // }
+
+    // function getComments() public view returns(Comment[] memory) {
+    //     return all_comments;
+    // }
+
+    function get_all_grades() public view returns(Grade[] memory) {
+        return all_grades;
+    } 
 
     function get_user_addreses() public view returns(address[] memory) {
         return user_addresses;

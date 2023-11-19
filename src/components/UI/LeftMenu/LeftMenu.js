@@ -11,6 +11,7 @@ import Requests from "../Requests/Requests";
 import UpgradeToAdmin from "../UpgradeToAdmin/UpgradeToAdmin";
 import Shops from "../Shops/Shops";
 import SendRequest from "../SendRequest/SendRequest";
+import Comments from "../Comments/Comments";
 
 
 const LeftMenu = () => {
@@ -31,8 +32,8 @@ const LeftMenu = () => {
 
 
     // buyer
-    const [comments, setComments] = useState('none');
-    const [sendRequest, setSendRequest] = useState('block');
+    const [comments, setComments] = useState(displays.coms);
+    const [sendRequest, setSendRequest] = useState(displays.sendReq);
 
 
     // admin
@@ -81,9 +82,9 @@ const LeftMenu = () => {
         setRequests('none');
         setToAdmin('none');
         setShops('none');
-        setComments('none');
-        setSendRequest('block');
-        sessionStorage.setItem('items', JSON.stringify({req: "none", adm:"none", shops:"none", sendReq: "none", coms: "block"}));
+        setComments('flex');
+        setSendRequest('none');
+        sessionStorage.setItem('items', JSON.stringify({req: "none", adm:"none", shops:"none", sendReq: "none", coms: "flex"}));
     }
     const admin = [
         {id: 0, text:"Заявки", icon: RequestController, callback: requestHandler},
@@ -141,7 +142,7 @@ const LeftMenu = () => {
                 : 
                     seller.map(item => (
                         <div key={item.id} className={cl.button_handler}
-                        onClick={() => item.display == "none"}>
+                        onClick={() => item.callback()}>
                             <item.icon className={cl.icon} style={{width: "50px", height: "50px"}}/>
                             <h3 className={cl.title_text}>{item.text}</h3>
                         </div>    
@@ -156,14 +157,15 @@ const LeftMenu = () => {
                 </div>
             </div>
             {curRole == 3 ? 
-            <div>
+            <div className={cl.item_handler}> 
                 <Requests visible = {requests} />
                 <UpgradeToAdmin visible = {toAdmin}/>
                 <Shops visible = {shops}/>
             </div>
             : curRole == 1 ?
-            <div>
+            <div className={cl.item_handler}>
                 <SendRequest visible={sendRequest}/>
+                <Comments visible={comments}/>
             </div> : null}
         </section>
     );
